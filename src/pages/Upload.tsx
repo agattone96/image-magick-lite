@@ -4,6 +4,7 @@ import MainLayout from "@/components/layout/MainLayout";
 import UploadArea from "@/components/upload/UploadArea";
 import { useToast } from "@/components/ui/use-toast";
 import { processImageFile } from "@/utils/fileUtils";
+import PageHeader from '../components/layout/PageHeader';
 
 export default function Upload() {
   const navigate = useNavigate();
@@ -41,6 +42,10 @@ export default function Upload() {
 
   return (
     <MainLayout>
+      <PageHeader
+        title="Upload Images"
+        description="Add new images to your collection."
+      />
       <div className="container mx-auto py-8">
         <h1 className="text-2xl font-semibold mb-6">Upload Images</h1>
         <UploadArea onFilesSelected={handleFilesSelected} />

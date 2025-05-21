@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import MainLayout from "@/components/layout/MainLayout";
+import PageHeader from "../components/layout/PageHeader";
 import {
   Card,
   CardHeader,
@@ -32,6 +33,10 @@ export default function Settings() {
 
   return (
     <MainLayout>
+      <PageHeader
+        title="Settings"
+        description="Manage your user preferences and app settings."
+      />
       <div className="max-w-lg mx-auto py-8">
         <form onSubmit={handleSave} className="space-y-6">
           <Card>

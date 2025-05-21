@@ -1,17 +1,19 @@
-
 import React, { useState, useEffect } from "react";
 import MainLayout from "@/components/layout/MainLayout";
+import PageHeader from '../components/layout/PageHeader';
 import { ImageFile } from "@/components/images/ImageGrid";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Save, FileText, Upload } from "lucide-react";
+import { Plus, Save, FileText, Upload, Tag } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Link, useLocation } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
 import ImageMetadataPanel from "@/components/images/ImageMetadataPanel";
 import { generateTags } from "@/lib/autoMagicUtils";
+import EmptyView from "../components/ui/EmptyView";
+import LoadingOverlay from "../components/ui/LoadingOverlay";
 
 export default function Tags() {
   const [images, setImages] = useState<ImageFile[]>([]);
@@ -181,27 +183,24 @@ export default function Tags() {
     }
   };
 
+  if (isGeneratingTags) {
+    return <LoadingOverlay message="Generating tags..." />;
+  }
+
   if (images.length === 0) {
     return (
-      <MainLayout>
-        <div className="flex flex-col items-center justify-center h-full p-8 text-center">
-          <div className="mb-6 w-16 h-16 bg-muted rounded-full flex items-center justify-center">
-            <FileText className="w-8 h-8 text-muted-foreground" />
-          </div>
-          <h2 className="text-xl font-medium mb-2">No images to tag</h2>
-          <p className="text-muted-foreground mb-6 max-w-md">
-            You need to upload some images before you can start tagging them.
-          </p>
-          <Link to="/upload">
-            <Button>Upload Images</Button>
-          </Link>
-        </div>
-      </MainLayout>
+      <EmptyView
+        icon={<Tag size={32} />}
+        title="No images to tag"
+        description="Upload images to start tagging and organizing them."
+        action={null}
+      />
     );
   }
 
   return (
     <MainLayout>
+      <PageHeader title="Tags" description="Manage and generate tags for your images." />
       <div className="container mx-auto py-6">
         <h1 className="text-2xl font-semibold mb-6">Image Tags</h1>
         

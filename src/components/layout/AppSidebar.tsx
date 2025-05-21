@@ -46,7 +46,14 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ activeSection, onSectionChange 
     { id: 'colors', label: 'Colors', icon: <Palette size={18} />, path: '/colors' },
     { id: 'magic', label: 'Auto Magic', icon: <Sparkles size={18} />, path: '/magic' },
     { id: 'export', label: 'Export', icon: <FileArchive size={18} />, path: '/export' },
+    { id: 'projects', label: 'Projects', icon: <FileText size={18} />, path: '/projects' },
+    { id: 'feedback', label: 'Feedback', icon: <FileText size={18} />, path: '/feedback' },
+    { id: 'settings', label: 'Settings', icon: <FileText size={18} />, path: '/settings' },
+    { id: 'admin', label: 'Admin', icon: <FileText size={18} />, path: '/admin', adminOnly: true },
   ];
+
+  const isAdmin = true; // TODO: Replace with real user role check
+  const filteredNavItems = navItems.filter(item => !item.adminOnly || isAdmin);
 
   return (
     <div className="w-64 border-r border-sidebar-border bg-sidebar h-screen flex flex-col">
@@ -55,7 +62,7 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ activeSection, onSectionChange 
       </div>
       
       <div className="flex-1 p-3 space-y-1">
-        {navItems.map(item => (
+        {filteredNavItems.map(item => (
           <SidebarItem
             key={item.id}
             icon={item.icon}

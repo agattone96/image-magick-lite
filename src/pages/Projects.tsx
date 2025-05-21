@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import MainLayout from "@/components/layout/MainLayout";
+import PageHeader from "../components/layout/PageHeader";
 import {
   Card,
   CardHeader,
@@ -26,6 +27,9 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { useToast } from "@/components/ui/use-toast";
+import EmptyView from "../components/ui/EmptyView";
+import { Folder } from "lucide-react";
+import LoadingOverlay from "../components/ui/LoadingOverlay";
 
 interface Project {
   id: string;
@@ -86,8 +90,13 @@ export default function Projects() {
     }, 800);
   };
 
+  if (loading) {
+    return <LoadingOverlay message="Loading projects..." />;
+  }
+
   return (
     <MainLayout>
+      <PageHeader title="Projects" description="Organize your images into projects." />
       <div className="max-w-2xl mx-auto py-8">
         <div className="flex items-center justify-between mb-4">
           <Input
@@ -103,51 +112,62 @@ export default function Projects() {
             <CardTitle>Projects</CardTitle>
           </CardHeader>
           <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableCell>Name</TableCell>
-                  <TableCell>Date</TableCell>
-                  <TableCell>Actions</TableCell>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {filtered.length === 0 ? (
+            {loading ? (
+              <></>
+            ) : projects.length === 0 ? (
+              <EmptyView
+                icon={<Folder size={32} />}
+                title="No projects yet"
+                description="Create your first project to organize your images."
+                action={null}
+              />
+            ) : (
+              <Table>
+                <TableHeader>
                   <TableRow>
-                    <TableCell
-                      colSpan={3}
-                      className="text-center text-muted-foreground"
-                    >
-                      No projects found.
-                    </TableCell>
+                    <TableCell>Name</TableCell>
+                    <TableCell>Date</TableCell>
+                    <TableCell>Actions</TableCell>
                   </TableRow>
-                ) : (
-                  filtered.map((p) => (
-                    <TableRow key={p.id}>
-                      <TableCell>{p.name}</TableCell>
-                      <TableCell>{p.created_at}</TableCell>
-                      <TableCell>
-                        <Button
-                          size="sm"
-                          onClick={() => loadProject(p.id)}
-                          className="mr-2"
-                        >
-                          Load
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="destructive"
-                          onClick={() => deleteProject(p.id)}
-                          disabled={deletingId === p.id}
-                        >
-                          {deletingId === p.id ? "Deleting…" : "Delete"}
-                        </Button>
+                </TableHeader>
+                <TableBody>
+                  {filtered.length === 0 ? (
+                    <TableRow>
+                      <TableCell
+                        colSpan={3}
+                        className="text-center text-muted-foreground"
+                      >
+                        No projects found.
                       </TableCell>
                     </TableRow>
-                  ))
-                )}
-              </TableBody>
-            </Table>
+                  ) : (
+                    filtered.map((p) => (
+                      <TableRow key={p.id}>
+                        <TableCell>{p.name}</TableCell>
+                        <TableCell>{p.created_at}</TableCell>
+                        <TableCell>
+                          <Button
+                            size="sm"
+                            onClick={() => loadProject(p.id)}
+                            className="mr-2"
+                          >
+                            Load
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="destructive"
+                            onClick={() => deleteProject(p.id)}
+                            disabled={deletingId === p.id}
+                          >
+                            {deletingId === p.id ? "Deleting…" : "Delete"}
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  )}
+                </TableBody>
+              </Table>
+            )}
           </CardContent>
         </Card>
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>

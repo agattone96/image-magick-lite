@@ -1,3 +1,8 @@
+// src/pages/NotFound.tsx
+// ✅ Purpose: 404 handler
+// 🧩 Components used: EmptyView, Button
+// 🧠 Hooks/Utilities used: useLocation, useEffect
+
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 

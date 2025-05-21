@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import MainLayout from "@/components/layout/MainLayout";
+import PageHeader from "../components/layout/PageHeader";
 import {
   Card,
   CardHeader,
@@ -59,6 +60,10 @@ export default function Feedback() {
 
   return (
     <MainLayout>
+      <PageHeader
+        title="Feedback"
+        description="Send us your feedback and suggestions."
+      />
       <div className="max-w-lg mx-auto py-8">
         <Card>
           <CardHeader>
