@@ -1,4 +1,4 @@
-"use client";
+gene"use client";
 
 import React, { useState } from "react";
 import MainLayout from "../components/layout/MainLayout";
