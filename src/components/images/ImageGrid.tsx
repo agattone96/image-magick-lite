@@ -28,7 +28,7 @@ const ImageGrid: React.FC<{
   onSelectionChange?: (selected: string[]) => void;
   multiSelect?: boolean;
 }> = ({ images, onSelect, selectedIds = [], onSelectionChange, multiSelect = false }) => {
-  const handleImageClick = (image: ImageFile, e: React.MouseEvent) => {
+  const handleImageClick = (image: ImageFile) => {
     if (multiSelect && onSelectionChange) {
       if (selectedIds.includes(image.id)) {
         onSelectionChange(selectedIds.filter(id => id !== image.id));
@@ -49,13 +49,13 @@ const ImageGrid: React.FC<{
             "border rounded-md overflow-hidden cursor-pointer transition-all hover:shadow-md relative" +
             (multiSelect && selectedIds.includes(image.id) ? " ring-2 ring-primary" : "")
           }
-          onClick={(e) => handleImageClick(image, e)}
+          onClick={() => handleImageClick(image)}
         >
           {multiSelect && (
             <input
               type="checkbox"
               checked={selectedIds.includes(image.id)}
-              onChange={() => handleImageClick(image, {} as React.MouseEvent)}
+              onChange={() => handleImageClick(image)}
               className="absolute top-2 left-2 z-10 w-4 h-4 accent-primary bg-white border rounded"
               onClick={e => e.stopPropagation()}
             />

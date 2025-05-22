@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Save, FileText, Upload, Tag } from "lucide-react";
+import { Plus, Tag } from "lucide-react"; // Removed Save, FileText, Upload
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom"; // Removed Link
 import { useToast } from "@/components/ui/use-toast";
 import ImageMetadataPanel from "@/components/images/ImageMetadataPanel";
 import { generateTags } from "@/lib/autoMagicUtils";

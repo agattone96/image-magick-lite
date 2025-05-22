@@ -3,8 +3,8 @@ import MainLayout from "@/components/layout/MainLayout";
 import ImageGrid, { ImageFile } from "@/components/images/ImageGrid";
 import ImageMetadataPanel from "@/components/images/ImageMetadataPanel";
 import { Button } from "@/components/ui/button";
-import { Upload, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { X } from "lucide-react"; // Removed Upload
+// import { Link } from "react-router-dom"; // Removed Link
 import PageHeader from '../components/layout/PageHeader';
 import EmptyView from "../components/ui/EmptyView";
 import { Image } from "lucide-react";

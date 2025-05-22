@@ -50,8 +50,8 @@ const steps = [
 
 const Onboarding: React.FC = () => {
 	const [currentStep, setCurrentStep] = useState(0);
-	const [loading, setLoading] = useState(false); // Simulate loading state
-	const [error, setError] = useState<string | null>(null);
+	const [loading] = useState(false); // Simulate loading state, removed setLoading
+	const [error] = useState<string | null>(null); // Removed setError
 
 	const nextStep = () =>
 		setCurrentStep((s) => Math.min(s + 1, steps.length - 1));

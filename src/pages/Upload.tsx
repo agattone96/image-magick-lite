@@ -31,7 +31,7 @@ export default function Upload() {
         title: "Upload successful!",
         description: `${processedImages.length} image(s) added.`,
       });
-    } catch (e) {
+    } catch { // Removed unused 'e'
       toast({
         title: "Upload failed",
         description: "Could not process one or more files.",

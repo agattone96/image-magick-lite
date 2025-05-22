@@ -6,6 +6,7 @@ import { Button } from "../components/ui/button";
 import { Palette, Copy } from "lucide-react";
 import LoadingOverlay from "../components/ui/LoadingOverlay";
 import { Popover, PopoverTrigger, PopoverContent } from "../components/ui/popover";
+import { ImageFile } from "@/components/images/ImageGrid"; // Added import
 
 // TODO: Implement useColorStore hook
 // const useColorStore = () => { return {}; };
@@ -32,8 +33,8 @@ const ColorSwatch = ({ color, onCopy }: { color: string; onCopy: (c: string) => 
 );
 
 export default function Colors() {
-  const [images, setImages] = useState<any[]>([]);
-  const [selectedImage, setSelectedImage] = useState<any | null>(null);
+  const [images, setImages] = useState<ImageFile[]>([]);
+  const [selectedImage, setSelectedImage] = useState<ImageFile | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [copied, setCopied] = useState<string | null>(null);
   // const { toast } = useToast();
@@ -44,7 +45,7 @@ export default function Colors() {
       const storedImages = JSON.parse(storedImagesStr);
       setImages(storedImages);
       if (storedImages.length > 0) setSelectedImage(storedImages[0]);
-    } catch (error) {
+    } catch { // Removed unused 'error'
       setImages([]);
     }
   }, []);
@@ -57,7 +58,7 @@ export default function Colors() {
   };
 
   const allColors = Array.from(
-    new Set(images.flatMap((img: any) => img.metadata?.colors || []))
+    new Set(images.flatMap((img) => img.metadata?.colors || [])) // Removed 'any' type for img
   );
 
   if (isProcessing) return <LoadingOverlay message="Extracting color palettes..." />;

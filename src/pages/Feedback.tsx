@@ -19,14 +19,14 @@ export default function Feedback() {
   const { toast } = useToast();
   const [feedbackText, setFeedbackText] = useState("");
   const [contactEmail, setContactEmail] = useState("");
-  const [attachments, setAttachments] = useState<File[]>([]);
+  // const [attachments, setAttachments] = useState<File[]>([]); // Removed
   const [submitting, setSubmitting] = useState(false);
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setAttachments(Array.from(e.target.files));
-    }
-  };
+  // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => { // Removed
+  //   if (e.target.files) {
+  //     // setAttachments(Array.from(e.target.files)); // Removed
+  //   }
+  // };
 
   const handleSubmit = async () => {
     if (!feedbackText.trim()) {
@@ -42,12 +42,12 @@ export default function Feedback() {
       await new Promise((res) => setTimeout(res, 1000));
       setFeedbackText("");
       setContactEmail("");
-      setAttachments([]);
+      // setAttachments([]); // Removed
       toast({
         title: "Thank you!",
         description: "Your feedback has been submitted.",
       });
-    } catch (e) {
+    } catch { // Removed unused 'e'
       toast({
         title: "Error",
         description: "Failed to submit feedback.",
@@ -87,12 +87,12 @@ export default function Feedback() {
               onChange={(e) => setContactEmail(e.target.value)}
               disabled={submitting}
             />
-            <Input
+            {/* <Input // Removed file input as attachments are removed
               type="file"
               multiple
               onChange={handleFileChange}
               disabled={submitting}
-            />
+            /> */}
           </CardContent>
           <CardFooter>
             <Button onClick={handleSubmit} disabled={submitting}>

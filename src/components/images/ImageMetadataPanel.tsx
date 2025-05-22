@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { formatFileSize } from "@/utils/fileUtils";
 import { Link } from "react-router-dom";
-import { FileText, Palette, Clock, Copy, Tag } from "lucide-react";
+import { FileText, Palette, Clock, Tag } from "lucide-react";
 import { ImageFile } from "./ImageGrid";
 import { useToast } from "../ui/use-toast";
 

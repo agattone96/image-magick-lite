@@ -7,13 +7,14 @@ import React, { useState, useEffect } from "react";
 import MainLayout from "../components/layout/MainLayout";
 import PageHeader from "../components/layout/PageHeader";
 import ExportFormatPicker from "../components/images/ExportFormatPicker";
-import { Button } from "../components/ui/button";
+// import { Button } from "../components/ui/button"; // Removed unused Button
 import EmptyView from "../components/ui/EmptyView";
 import { FileArchive } from "lucide-react";
+import { ImageFile } from "@/components/images/ImageGrid"; // Added import
 
 const Export: React.FC = () => {
-	const [images, setImages] = useState<any[]>([]);
-	const [selectedIds, setSelectedIds] = useState<string[]>([]);
+	const [images, setImages] = useState<ImageFile[]>([]);
+	const [selectedIds, setSelectedIds] = useState<string[]>([]); // Keep setSelectedIds for now
 	const [exportDialogOpen, setExportDialogOpen] = useState(false);
 
 	useEffect(() => {
@@ -21,7 +22,7 @@ const Export: React.FC = () => {
 		try {
 			const storedImages = JSON.parse(storedImagesStr);
 			setImages(storedImages);
-		} catch (error) {
+		} catch { // Removed unused error
 			setImages([]);
 		}
 	}, []);

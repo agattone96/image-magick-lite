@@ -30,12 +30,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ icon, label, isActive = false
   );
 };
 
-interface AppSidebarProps {
-  activeSection?: string;
-  onSectionChange?: (section: string) => void;
-}
-
-const AppSidebar: React.FC<AppSidebarProps> = ({ activeSection, onSectionChange }) => {
+const AppSidebar: React.FC = () => {
   const location = useLocation();
   const currentPath = location.pathname === '/' ? '/upload' : location.pathname;
   
