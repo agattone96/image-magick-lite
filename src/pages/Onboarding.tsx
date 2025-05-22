@@ -11,7 +11,7 @@ import EmptyView from "../components/ui/EmptyView";
 import LoadingOverlay from "../components/ui/LoadingOverlay";
 
 // TODO: Implement useOnboarding hook
-// const useOnboarding = () => { return {}; };
+const useOnboarding = () => { return {}; };
 // TODO: Implement onboarding logic in lib/onboarding
 
 const steps = [
@@ -70,7 +70,7 @@ const Onboarding: React.FC = () => {
 	if (error)
 		return (
 			<EmptyView
-				icon={null}
+				icon={null} // TODO: Consider adding an error icon
 				title="Error"
 				description={error}
 			/>

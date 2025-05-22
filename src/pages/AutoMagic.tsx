@@ -12,9 +12,7 @@ import LoadingOverlay from "../components/ui/LoadingOverlay";
 import EmptyView from "../components/ui/EmptyView";
 import { Sparkles } from "lucide-react";
 
-// TODO: Implement useAutomation hook
-// const useAutomation = () => { return {}; };
-// TODO: Move auto-magic logic to lib/autoMagic
+// TODO: Implement image enhancement automation logic
 
 const AutoMagic: React.FC = () => {
   const [images, setImages] = useState<any[]>([]);
@@ -66,7 +64,7 @@ const AutoMagic: React.FC = () => {
   if (images.length === 0) {
     return (
       <MainLayout>
-        <PageHeader title="Auto Magic" description="Automatically tag and extract colors from your images using AI." />
+        <PageHeader title="AutoMagic Enhancement" description="Apply automated enhancements to your images." />
         <EmptyView
           icon={<Sparkles size={32} />}
           title="No images to process"
@@ -82,8 +80,8 @@ const AutoMagic: React.FC = () => {
   return (
     <MainLayout>
       <PageHeader
-        title="Auto Magic"
-        description="Automatically tag and extract colors from your images using AI."
+        title="AutoMagic Enhancement"
+        description="Apply automated enhancements to your images."
         actions={
           <Button onClick={handleRunMagic} disabled={isProcessing || selectedIds.length === 0}>
             Run Auto Magic
@@ -98,6 +96,7 @@ const AutoMagic: React.FC = () => {
           <Button variant="outline" onClick={handleCancel} disabled={!isProcessing}>
             Cancel
           </Button>
+          {/* TODO: Implement retry mechanism for failed enhancements */}
           <Button variant="secondary" onClick={handleRunMagic} disabled={!error}>
             Retry
           </Button>

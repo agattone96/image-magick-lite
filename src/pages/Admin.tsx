@@ -13,8 +13,8 @@ import LoadingOverlay from "../components/ui/LoadingOverlay";
 import EmptyView from "../components/ui/EmptyView";
 
 // TODO: Implement useAdminPanel hook
-// const useAdminPanel = () => { return {}; };
-// TODO: Move admin logic to lib/admin
+const useAdminPanel = () => { return {}; };
+// TODO: Implement admin logic in lib/admin
 
 // Types
 interface User { id: string; email: string; role: string; }

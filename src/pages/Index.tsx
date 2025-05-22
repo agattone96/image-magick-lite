@@ -1,14 +1,16 @@
-
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"; // useState is unused if handleFilesSelected is dead code
 import { useNavigate } from "react-router-dom";
-import MainLayout from "@/components/layout/MainLayout";
-import { ImageFile } from "@/components/images/ImageGrid";
-import { useToast } from "@/components/ui/use-toast";
-import { processImageFile } from "@/utils/fileUtils";
+import MainLayout from "../components/layout/MainLayout"; // Changed path
+// ImageFile, useToast, processImageFile are unused if handleFilesSelected is dead code
+// For now, correcting paths as per standards.
+import { ImageFile } from "../components/images/ImageGrid"; // Changed path
+import { useToast } from "../components/ui/use-toast"; // Changed path
+import { processImageFile } from "../utils/fileUtils"; // Changed path
 
 const Index = () => {
   const navigate = useNavigate();
-  const { toast } = useToast();
+  // toast and images state are unused if handleFilesSelected is dead code
+  const { toast } = useToast(); 
   const [images, setImages] = useState<ImageFile[]>([]);
 
   // Redirect to upload page on initial load

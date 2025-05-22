@@ -6,30 +6,11 @@ import { Button } from "../components/ui/button";
 import { Palette, Copy } from "lucide-react";
 import LoadingOverlay from "../components/ui/LoadingOverlay";
 import { Popover, PopoverTrigger, PopoverContent } from "../components/ui/popover";
+import ColorSwatch from "../components/ui/ColorSwatch"; // Added import
 
 // TODO: Implement useColorStore hook
-// const useColorStore = () => { return {}; };
-// TODO: Move color extraction logic to lib/colorExtractor
-
-const ColorSwatch = ({ color, onCopy }: { color: string; onCopy: (c: string) => void }) => (
-  <Popover>
-    <PopoverTrigger asChild>
-      <button
-        className="w-8 h-8 rounded-full border border-border transition hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary"
-        style={{ background: color }}
-        title={color}
-        aria-label={`Copy ${color}`}
-        onClick={() => onCopy(color)}
-      />
-    </PopoverTrigger>
-    <PopoverContent className="flex items-center gap-2">
-      <span className="font-mono text-xs">{color}</span>
-      <Button size="icon" variant="ghost" onClick={() => onCopy(color)} aria-label="Copy color">
-        <Copy size={16} />
-      </Button>
-    </PopoverContent>
-  </Popover>
-);
+const useColorStore = () => { return {}; }; // TODO: Implement useColorStore hook
+// TODO: Implement color extraction logic in lib/colorExtractor
 
 export default function Colors() {
   const [images, setImages] = useState<any[]>([]);
@@ -65,7 +46,7 @@ export default function Colors() {
   if (allColors.length === 0) {
     return (
       <MainLayout>
-        <PageHeader title="Colors" description="View and export extracted color palettes." />
+        <PageHeader title="Color Analysis" description="Extract and analyze colors from your images." />
         <EmptyView
           icon={<Palette size={32} />}
           title="No colors extracted"
@@ -79,8 +60,8 @@ export default function Colors() {
   return (
     <MainLayout>
       <PageHeader
-        title="Colors"
-        description="View and export extracted color palettes."
+        title="Color Analysis"
+        description="Extract and analyze colors from your images."
         actions={selectedImage && (
           <Button size="sm" variant="outline" onClick={() => setIsProcessing(true)}>
             Re-extract Palette
