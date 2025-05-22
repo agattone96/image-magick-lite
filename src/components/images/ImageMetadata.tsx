@@ -7,7 +7,7 @@ import { extractColors } from '@/lib/autoMagicUtils';
 
 interface ImageMetadataProps {
   image: ImageFile;
-  onUpdate: (id: string, metadata: any) => void;
+  onUpdate: (id: string, metadata: ImageFile['metadata']) => void;
 }
 
 const ImageMetadata: React.FC<ImageMetadataProps> = ({ image, onUpdate }) => {

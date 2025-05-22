@@ -8,7 +8,6 @@ import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from ".
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "../components/ui/tabs";
-import { Skeleton } from "../components/ui/skeleton";
 import LoadingOverlay from "../components/ui/LoadingOverlay";
 import EmptyView from "../components/ui/EmptyView";
 
@@ -37,7 +36,7 @@ const Admin: React.FC = () => {
   ]);
   const [userSearch, setUserSearch] = useState("");
   const [tab, setTab] = useState("users");
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
 
   // Handlers
   const handleUserSearch = (e: React.ChangeEvent<HTMLInputElement>) => {

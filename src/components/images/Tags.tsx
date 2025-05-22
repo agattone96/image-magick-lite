@@ -71,7 +71,7 @@ const Tags: React.FC = () => {
       const storedImages = JSON.parse(storedImagesStr);
       setImages(storedImages);
       setSelectedImage(storedImages[0] || null);
-    } catch (error) {
+    } catch {
       setImages([]);
       setSelectedImage(null);
     }

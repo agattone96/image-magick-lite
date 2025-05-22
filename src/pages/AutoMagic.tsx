@@ -11,11 +11,12 @@ import { Progress } from "../components/ui/progress";
 import LoadingOverlay from "../components/ui/LoadingOverlay";
 import EmptyView from "../components/ui/EmptyView";
 import { Sparkles } from "lucide-react";
+import { ImageFile } from "@/components/images/ImageGrid"; // Added import
 
 // TODO: Implement image enhancement automation logic
 
 const AutoMagic: React.FC = () => {
-  const [images, setImages] = useState<any[]>([]);
+  const [images, setImages] = useState<ImageFile[]>([]);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -26,7 +27,7 @@ const AutoMagic: React.FC = () => {
     try {
       const storedImages = JSON.parse(storedImagesStr);
       setImages(storedImages);
-    } catch (error) {
+    } catch { // Removed unused 'error'
       setImages([]);
     }
   }, []);
@@ -44,7 +45,7 @@ const AutoMagic: React.FC = () => {
       }
       // Simulate updating images
       setIsProcessing(false);
-    } catch (e) {
+    } catch { // Removed unused 'e'
       setError("AI processing failed. Please try again.");
       setIsProcessing(false);
     }
