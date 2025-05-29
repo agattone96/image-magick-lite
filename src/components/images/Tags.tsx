@@ -10,54 +10,9 @@ import { Button } from "../components/ui/button";
 import EmptyView from "../components/ui/EmptyView";
 import LoadingOverlay from "../components/ui/LoadingOverlay";
 import ImageGrid, { ImageFile } from "../components/images/ImageGrid";
-import { Input } from "../components/ui/input";
+import { Input } from "@/components/ui/input"; // Adjusted path
 import { Tag } from "lucide-react";
-
-// Stub for TagEditor (replace with real implementation if available)
-const TagEditor: React.FC<{
-  image: ImageFile;
-  onUpdate: (tags: string[]) => void;
-}> = ({ image, onUpdate }) => {
-  const [input, setInput] = useState("");
-  const tags = image.metadata?.tags || [];
-
-  const addTag = () => {
-    if (input.trim() && !tags.includes(input.trim())) {
-      onUpdate([...tags, input.trim()]);
-      setInput("");
-    }
-  };
-
-  const removeTag = (tag: string) => {
-    onUpdate(tags.filter((t) => t !== tag));
-  };
-
-  return (
-    <div className="space-y-2">
-      <div className="flex gap-2 flex-wrap">
-        {tags.map((tag) => (
-          <span key={tag} className="inline-flex items-center bg-muted rounded px-2 py-1 text-xs mr-2">
-            {tag}
-            <Button size="icon" variant="ghost" className="ml-1" onClick={() => removeTag(tag)}>
-              ×
-            </Button>
-          </span>
-        ))}
-      </div>
-      <div className="flex gap-2 mt-2">
-        <Input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Add tag"
-          className="w-40"
-        />
-        <Button onClick={addTag} disabled={!input.trim()}>
-          Add
-        </Button>
-      </div>
-    </div>
-  );
-};
+import TagEditor from "./TagEditor"; // Import TagEditor from its new location
 
 const Tags: React.FC = () => {
   const [images, setImages] = useState<ImageFile[]>([]);
